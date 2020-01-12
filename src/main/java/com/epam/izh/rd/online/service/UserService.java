@@ -38,10 +38,6 @@ public class UserService implements IUserService {
     @Override
     public User register(User user) {
 
-        //
-        // Здесь необходимо реализовать перечисленные выше проверки
-        //
-
         if (user.getLogin() == null || user.getLogin().equals("") ||
             user.getPassword() == null || user.getPassword().equals("")) {
             throw new IllegalArgumentException("Ошибка в заполнении полей");
@@ -82,15 +78,11 @@ public class UserService implements IUserService {
      */
     public void delete(String login) {
 
-        // Здесь необходимо сделать доработку метод
         try {
             userRepository.deleteByLogin(login);
         } catch (UnsupportedOperationException e) {
             throw new NotAccessException("Недостаточно прав для выполнения операции");
         }
-
-        // Здесь необходимо сделать доработку метода
-
     }
 
 }
