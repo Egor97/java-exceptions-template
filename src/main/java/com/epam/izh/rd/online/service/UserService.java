@@ -36,7 +36,7 @@ public class UserService implements IUserService {
      * @param user - даныне регистрирующегося пользователя
      */
     @Override
-    public User register(User user) {
+    public User register(User user) throws Exception {
 
         if (user.getLogin() == null || user.getLogin().equals("") ||
             user.getPassword() == null || user.getPassword().equals("")) {

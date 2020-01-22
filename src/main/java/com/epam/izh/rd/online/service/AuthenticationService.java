@@ -27,12 +27,10 @@ public class AuthenticationService implements IAuthenticationService {
      * @param user - пользователь проходящий авторизацию
      */
     @Override
-    public User login(User user) {
+    public User login(User user) throws Exception {
         // Находим пользователя в базе
         User foundUser = userRepository.findByLogin(user.getLogin());
 
-        //
-        // Здесь необходимо реализовать перечисленные выше проверки
         if (foundUser == null) {
             throw new UserNotFoundException("Пользователь с таким логином не найден");
         }
@@ -40,7 +38,6 @@ public class AuthenticationService implements IAuthenticationService {
         if (!foundUser.getPassword().equals(user.getPassword())) {
             throw new NotCorrectPasswordException("Пароль введен неверно!");
         }
-        //
 
         // Устанавливаем найденного пользователя, который прошел все проверки, как вошедшего в систему.
         CurrentUserManager.setCurrentLoggedInUser(foundUser);
